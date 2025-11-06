@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/confetti.css">
+  <style>
+    body {
+      font-family: Arial sans-serif;
+      background-color: #111;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    
+    #header {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-radius: 10px;
+      color: black;
+      text-align: center;
+    }
+    
+    #seccion {
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+    }
+    
+    .barra {
+      padding: 20px;
+      margin: 5px;
+      background: #222;
+      flex: 3;
+      border-radius: 10px;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+    }
+    
+    .contenido {
+      padding: 5px;
+      border-radius: 10px;
+      background: rgb(202, 24, 24);
+      margin: 5px;
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .subcontenido1 {
+      text-align: center;
+    }
+    
+    #imagen-interactiva {
+      position: relative;
+      width: 350px;
+      height: 650px;
+      background-image: url('F1.jpg');
+      background-size: cover;
+      border: 2px solid #000;
+      border-radius: 10px;
+    }
+    
+    #hotspot1, #hotspot2, #hotspot3 {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 0, 0, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    
+    #hotspot1 { top: 100px; left: 130px; }
+    #hotspot2 { top: 300px; left: 180px; }
+    #hotspot3 { top: 500px; left: 100px; }
+    
+    .text-hotspot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+    }
+    
+    #resultado {
+      display: none;
+      text-align: center;
+    }
+    
+    .texto-rojo {
+      font-size: 40px;
+      font-weight: bold;
+      color: rgb(255, 255, 255);
+    }
+    
+    #footer {
+      background-color: #222;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    
+    #instrucciones, #prueba {
+      display: inline-block;
+      margin: 10px;
+      cursor: pointer;
+    }
+    
+    #regresar {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: none;
+    }
+
+    #imagen-info {
+      margin-top: 15px;
+      width: 250px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    #imagen-resultado-final {
+      margin-top: 15px;
+      width: 250px;
+      border-radius: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header">
+    <h3>Conociendo la Fórmula 1</h3>
+  </div>
+
+  <div id="seccion">
+    <div class="barra">
+      <div id="imagen-interactiva">
+        <div id="hotspot1"><span class="text-hotspot">1</span></div>
+        <div id="hotspot2"><span class="text-hotspot">2</span></div>
+        <div id="hotspot3"><span class="text-hotspot">3</span></div>
+      </div>
+    </div>
+    
+    <div class="contenido">
+      <div class="subcontenido1">
+        <h2 id="titulo-info">Instrucciones</h2>
+        <p id="texto-info">Haz clic en cada uno de los puntos en la imagen para obtener información sobre el piloto, el circuito y el monoplaza. Después, realiza el test de conocimientos.</p>
+        <img id="imagen-info" src="" alt="-">
+      </div>
+
+      <div id="resultado">
+        <h2>Tu resultado:</h2>
+        <span id="calif" class="texto-rojo">0/0</span><br>
+        <img id="imagen-resultado" width="200px" src="ganador.jpg" />
+        <img id="imagen-resultado-final" src="celebracion.jpg" alt="Imagen del resultado final">
+      </div>
+
+      <button id="regresar" onclick="regresar()">Regresar</button>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div id="instrucciones"><img width="30px" src="instru.jpg" /></div>
+    <div id="prueba"><img width="40px" src="copaf1.jpg" /></div>
+  </div>
+
+  <script type="text/javascript">
+    let puntaje = 0;
+
+    // Información interactiva
+    document.getElementById('hotspot1').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Piloto';
+      document.getElementById('texto-info').textContent = 'Cada escudería tiene generalmente dos pilotos. Estos pilotos compiten en todas las carreras del campeonato, y su objetivo es acumular el mayor número de puntos posible para ganar el campeonato mundial de pilotos. Los puntos se distribuyen según el lugar en el que terminen en cada carrera, siendo el primero en llegar el que recibe la mayor cantidad. Al final de la temporada, el piloto con más puntos es coronado como campeón mundial. Los pilotos también compiten para obtener victorias individuales, podios (top 3) y récords.Las escuderías son los equipos que participan en la F1, y cada una tiene su propio conjunto de ingenieros, técnicos, mecánicos y pilotos. Algunas de las escuderías más famosas son:Ferrari,Mercedes,Red Bull Racing,McLaren,Alpine.';
+      document.getElementById('imagen-info').src = 'piloto.jpg';
+      document.getElementById('imagen-info').style.display = 'block';
+      document.getElementById('regresar').style.display = 'block';
+    };
+
+    document.getElementById('hotspot2').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Circuito';
+      document.getElementById('texto-info').textContent = 'La Fórmula 1 se corre en una serie de circuitos repartidos por todo el mundo. Algunos de estos circuitos son permanentes, mientras que otros son circuitos callejeros, cerrados temporalmente para la carrera. Los circuitos varían en dificultad: algunos son muy rápidos, como el de Monza, mientras que otros son más técnicos, como el de Mónaco, con muchas curvas estrechas.Los circuitos callejeros son especialmente difíciles porque tienen menos espacio para adelantar y más obstáculos (como las barreras), mientras que los circuitos permanentes suelen ser más amplios, permitiendo maniobras de adelantamiento.';
+      document.getElementById('imagen-info').src = 'circuito.jpg';
+      document.getElementById('imagen-info').style.display = 'block';
+      document.getElementById('regresar').style.display = 'block';
+    };
+
+    document.getElementById('hotspot3').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Monoplaza';
+      document.getElementById('texto-info').textContent = 'Los monoplazas de F1 son autos de una sola plaza diseñados para la velocidad y la eficiencia. Son extremadamente ligeros y aerodinámicos. Los monoplazas están equipados con motores híbridos (una combinación de un motor de combustión interna y un motor eléctrico), lo que les permite maximizar la potencia mientras ahorran energía.La tecnología de los monoplazas evoluciona rápidamente, con nuevas innovaciones que mejoran la seguridad, la velocidad y la eficiencia en cada temporada. Los monoplazas son tan rápidos que pueden superar los 300 km/h en circuitos de alta velocidad.';
+      document.getElementById('imagen-info').src = 'monoplaza.jpg';
+      document.getElementById('imagen-info').style.display = 'block';
+      document.getElementById('regresar').style.display = 'block';
+    };
+
+    // Función de regresar
+    function regresar() {
+      document.getElementById('titulo-info').textContent = 'Instrucciones';
+      document.getElementById('texto-info').textContent = 'Haz clic en cada uno de los puntos en la imagen para obtener información sobre el piloto, el circuito y el monoplaza. Después, realiza el test de conocimientos.';
+      document.getElementById('imagen-info').style.display = 'none';
+      document.getElementById('regresar').style.display = 'none';
+    }
+
+    // Instrucciones
+    document.getElementById('instrucciones').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Instrucciones';
+      document.getElementById('texto-info').textContent = 'Haz clic en los puntos para obtener más información y luego responde el quiz.';
+      document.getElementById('imagen-info').style.display = 'none';
+    };
+
+    // Test de conocimientos
+    document.getElementById('prueba').onclick = function() {
+      alert("Bienvenidos al test de conocimientos de Fórmula 1. Responde correctamente las preguntas.");
+
+      let pregunta1 = prompt("Pregunta 1: ¿Quién es el piloto con más campeonatos en la F1?");
+      if (pregunta1 && (pregunta1.toLowerCase() === "michael schumacher" || pregunta1.toLowerCase() === "lewis hamilton")) {
+        alert("¡Correcto!");
+        puntaje += 1;
+      } else {
+        alert("Incorrecto. La respuesta correcta es: Michael Schumacher o Lewis Hamilton.");
+      }
+
+      let pregunta2 = prompt("Pregunta 2: ¿Dónde se celebra el Gran Premio de Mónaco?");
+      if (pregunta2 && pregunta2.toLowerCase() === "monaco") {
+        alert("¡Correcto!");
+        puntaje += 1;
+      } else {
+        alert("Incorrecto. La respuesta correcta es: Mónaco.");
+      }
+
+      let pregunta3 = prompt("Pregunta 3: ¿Qué equipo ha ganado más campeonatos de constructores en la F1?");
+      if (pregunta3 && pregunta3.toLowerCase() === "ferrari") {
+        alert("¡Correcto!");
+        puntaje += 1;
+      } else {
+        alert("Incorrecto. La respuesta correcta es: Ferrari.");
+      }
+
+      let pregunta4 = prompt("Pregunta 4: ¿Qué monoplaza es conocido por ser rojo?");
+      if (pregunta4 && pregunta4.toLowerCase() === "ferrari") {
+        alert("¡Correcto!");
+        puntaje += 1;
+      } else {
+        alert("Incorrecto. La respuesta correcta es: Ferrari.");
+      }
+
+      let pregunta5 = prompt("Pregunta 5: ¿Quién es el actual campeón de la F1?");
+      if (pregunta5 && pregunta5.toLowerCase() === "max verstappen") {
+        alert("¡Correcto!");
+        puntaje += 1;
+      } else {
+        alert("Incorrecto. La respuesta correcta es: Max Verstappen.");
+      }
+
+      document.getElementById('calif').textContent = puntaje + "/5";
+      document.getElementById('resultado').style.display = 'block';
+      document.getElementById('--').style.display = 'block';
+    };
+  </script>
+</body>
+</html>
