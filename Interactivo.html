@@ -259,6 +259,13 @@
       } else {
         alert("Incorrecto. La respuesta correcta es: Max Verstappen.");
       }
+      let pregunta6 = prompt("Pregunta 5: ¿Cuàl es la actual escuderia campeóna de la F1?");
+      if (pregunta5 && pregunta5.toLowerCase() === "Red Bull") {
+        alert("¡Correcto!");
+        puntaje += 1;
+      } else {
+        alert("Incorrecto. La respuesta correcta es: Max Verstappen.");
+      }
 
       document.getElementById('calif').textContent = puntaje + "/5";
       document.getElementById('resultado').style.display = 'block';
@@ -267,3 +274,4 @@
   </script>
 </body>
 </html>
+
